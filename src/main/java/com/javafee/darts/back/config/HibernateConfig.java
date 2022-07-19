@@ -26,7 +26,7 @@ public class HibernateConfig {
                 Environment.USER, AppProperties.value("db.user"), // "postgres",
                 Environment.PASS, AppProperties.value("db.password"), // "admin123",
                 Environment.DIALECT, "org.hibernate.dialect.PostgreSQL95Dialect",
-                Environment.HBM2DDL_AUTO, "create");
+                Environment.HBM2DDL_AUTO, AppProperties.value("db.ddl4auto"));
         registryBuilder.applySettings(settings);
         StandardServiceRegistry registry = registryBuilder.build();
 

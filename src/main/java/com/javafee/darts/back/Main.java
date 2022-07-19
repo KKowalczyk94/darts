@@ -3,9 +3,11 @@ package com.javafee.darts.back;
 import com.javafee.darts.back.domain.Player;
 import com.javafee.darts.back.domain.UserPoints;
 import com.javafee.darts.back.repository.Dao;
+import lombok.extern.java.Log;
 
 import java.util.List;
 
+@Log
 public class Main {
     public static void main(String[] args) {
         Dao<Player> playerDao = new Dao<>(Player.class);

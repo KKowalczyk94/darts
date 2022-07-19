@@ -12,8 +12,9 @@ public class AppProperties {
 
     static {
         PROPS = new Properties();
-        try (InputStream us = AppProperties.class.getClassLoader().getResourceAsStream("application.properties")) {
-            PROPS.load(us);
+        try (InputStream is
+                     = AppProperties.class.getClassLoader().getResourceAsStream("application.properties")) {
+            PROPS.load(is);
         } catch (IOException e) {
             e.printStackTrace();
         }
