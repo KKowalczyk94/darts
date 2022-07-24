@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.6.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+    <changeSet author="karol (generated)" id="1658348216581-2">
+        <insert tableName="user_points">
+            <column name="id" valueNumeric="1"/>
+            <column name="points" valueNumeric="213"/>
+            <column name="turn" valueNumeric="29"/>
+            <column name="turn_points" valueNumeric="63"/>
+        </insert>
+        <insert tableName="user_points">
+            <column name="id" valueNumeric="2"/>
+            <column name="points" valueNumeric="123"/>
+            <column name="turn" valueNumeric="10"/>
+            <column name="turn_points" valueNumeric="56"/>
+        </insert>
+    </changeSet>
+    <changeSet author="karol (generated)" id="1658348216581-1">
+        <insert tableName="player">
+            <column name="id" valueNumeric="1"/>
+            <column name="id_user_points" valueNumeric="1"/>
+            <column name="address" value="Kielce Wymiatają"/>
+            <column name="name" value="Karol"/>
+            <column name="nick" value="Karol"/>
+            <column name="surname" value="Kowalczyk"/>
+        </insert>
+        <insert tableName="player">
+            <column name="id" valueNumeric="2"/>
+            <column name="id_user_points" valueNumeric="2"/>
+            <column name="address" value="Zabrze Wicha"/>
+            <column name="name" value="Kuba"/>
+            <column name="nick" value="Kuba"/>
+            <column name="surname" value="Rutkowski"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

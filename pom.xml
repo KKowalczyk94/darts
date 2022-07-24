@@ -11,6 +11,8 @@
     <properties>
         <maven.compiler.source>13</maven.compiler.source>
         <maven.compiler.target>13</maven.compiler.target>
+        <maven.timestamp>${maven.build.timestamp}</maven.timestamp>
+        <maven.build.timestamp.format>yyyyMMddHHmmsszzz</maven.build.timestamp.format>
     </properties>
 
     <build>
@@ -26,7 +28,61 @@
                 </includes>
             </resource>
         </resources>
+        <!-- Liquibase configuration -->
+        <plugins>
+            <plugin>
+                <groupId>org.liquibase</groupId>
+                <artifactId>liquibase-maven-plugin</artifactId>
+                <version>4.11.0</version>
+                <configuration>
+                    <propertyFile>liquibase.properties</propertyFile>
+                    <changeLogFile>src/main/resources/db-changelog-master.xml</changeLogFile>
+                    <!-- comment if running locally -->
+<!--                    <url>-->
+<!--                        jdbc:postgresql://ec2-52-204-157-26.compute-1.amazonaws.com:5432/d9jte72vfht4cq?sslmode=require-->
+<!--                    </url>-->
+<!--                    &lt;!&ndash; user application.properties &ndash;&gt;-->
+<!--                    <username>jftxqzplaurrgx</username>-->
+<!--                    <password>883d64c3b650d3f91795f38be23b7cdb91a9f9cc1b77dbbedf5cdf5677e83d69</password>-->
+<!--                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>-->
+                    <url>
+                        jdbc:postgresql://localhost:5432/darts
+                    </url>
+                    <!-- user application.properties -->
+                    <username>postgres</username>
+                    <password>admin123</password>
+                    <promptOnNonLocalDatabase>false</promptOnNonLocalDatabase>
+                </configuration>
+            </plugin>
+            <!-- display active profile in compile phase -->
+            <!--<plugin>-->
+            <!--<groupId>org.apache.maven.plugins</groupId>-->
+            <!--<artifactId>maven-help-plugin</artifactId>-->
+            <!--<version>${org.apache.maven.plugins}</version>-->
+            <!--<executions>-->
+            <!--<execution>-->
+            <!--<id>show-profiles</id>-->
+            <!--<phase>compile</phase>-->
+            <!--<goals>-->
+            <!--<goal>active-profiles</goal>-->
+            <!--</goals>-->
+            <!--</execution>-->
+            <!--</executions>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>com.heroku.sdk</groupId>
+                <artifactId>heroku-maven-plugin</artifactId>
+                <version>3.0.2</version>
+                <configuration>
+                    <jdkVersion>${maven.compiler.target}</jdkVersion>
+                    <configVars>
+                        <MAVEN_JAVA_OPTS>liquibase:update -P prod</MAVEN_JAVA_OPTS>
+                    </configVars>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
+
 
     <profiles>
         <profile>
